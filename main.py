@@ -48,7 +48,7 @@ def is_oper(oper):
 
 
 while not flag:
-    flag_1 = False54
+    flag_1 = False
     string = input(msg_0)
     string_list = string.split()
     x = is_num(string_list[0])
