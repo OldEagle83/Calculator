@@ -6,6 +6,9 @@ msg_2 = "Yes ... an interesting math operation. You've slept through all classes
 msg_3 = "Yeah... division by zero. Smart move..."
 msg_4 = "Do you want to store the result? (y / n):"
 msg_5 = "Do you want to continue calculations? (y / n):"
+yes = ['y', 'Y']
+no = ['n', 'N']
+mem = ['m', 'M']
 
 # Variable initialization
 operators = ['+', '-', '*', '/']
@@ -20,7 +23,6 @@ def is_num(x):
     try:
         x = float(x)
     except:
-        print(msg_1)
         return [False, x]
     return [True, x]
 
@@ -45,18 +47,21 @@ def is_oper(oper):
         return [True, oper]
 
 
-while flag == False:
+while not flag:
+    flag_1 = False54
     string = input(msg_0)
     string_list = string.split()
     x = is_num(string_list[0])
     y = is_num(string_list[2])
     oper = is_oper(string_list[1])
-    if x[1] == 'M':
+    if x[1] in mem:
         x[0] = True
         x[1] = memory
-    if y[1] == 'M':
+    if y[1] in mem:
         y[0] = True
         y[1] = memory
+    if not x[0] or not y[0]:
+        print(msg_1)
 
     if x[0] and y[0] and oper[0]:
         x = x[1]
@@ -64,21 +69,28 @@ while flag == False:
         oper = oper[1]
         flag = True
 
-    if flag == True:
         if y == 0 and oper == '/':
             print(msg_3)
             flag = False
         else:
             result = oper_ac(x, oper, y)
             print(result)
-            answer = input(msg_4)
+            answer_4 = input(msg_4)
             while not flag_1:
-                if answer == 'y' or answer == 'Y':
+                if answer_4 in yes:
                     memory = result
-                    answer = input(msg_5)
-                    if answer == 'y' or answer == 'Y':
+                    answer_5 = input(msg_5)
+                    if answer_5 in yes:
                         flag = False
-                    elif answer == 'n' or answer =='N':
+                        flag_1 = True
+                    elif answer_5 in no:
+                        break
+                elif answer_4 in ['n', 'N']:
+                    answer_5 = input(msg_5)
+                    if answer_5 in yes:
+                        flag = False
+                        flag_1 = True
+                    elif answer_5 in no:
                         break
 
 
