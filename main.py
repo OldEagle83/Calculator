@@ -10,6 +10,9 @@ msg_6 = " ... lazy"
 msg_7 = " ... very lazy"
 msg_8 = " ... very, very lazy"
 msg_9 = "You are"
+msg_10 = "Are you sure? It is only one digit! (y / n)"
+msg_11 = "Don't be silly! It's just one number! Add to the memory? (y / n)"
+msg_12 = "Last chance! Do you really want to embarrass yourself? (y / n)"
 yes = ['y', 'Y']
 no = ['n', 'N']
 mem = ['m', 'M']
@@ -103,7 +106,22 @@ while not flag:
             answer_4 = input(msg_4)
             while not flag_1:
                 if answer_4 in yes:
-                    memory = result
+                    #memory = result
+
+                    if is_one_digit(result):
+                        msg_index = 10
+                        while msg_index <= 12:
+                            answer = input(globals()['msg_%s' % msg_index])
+                            if answer in yes:
+                                if msg_index <= 12:
+                                    msg_index += 1
+                            elif answer in no:
+                                break
+                        if msg_index >= 12:
+                            memory = result
+                    else:
+                        memory = result
+
                     answer_5 = input(msg_5)
                     if answer_5 in yes:
                         flag = False
